@@ -1,26 +1,32 @@
 def punched_ASCII(array):
-    matriz=[]
     for i in range(1,len(array)):
-        print(f"Case #{i}")
+        matriz=[]
+        print("Case #{}:".format(i))
         for j in range(0,(2*array[i][0])+1):
-            linea=[]
+            linea=''
             for k in range(0,(2*array[i][1])+1):
                 if ((j in [0,1]) and (k in [0,1])):
-                    linea.append(".")
+                    linea+='.'
                 else:
                     if j%2==0:
-                        linea.append("+") if k%2==0 else linea.append("-") 
+                        if k%2==0:
+                            linea+='+'
+                        else:
+                            linea+='-' 
                     else:
-                        linea.append("|") if k%2==0 else linea.append(".")
+                        if k%2==0:
+                            linea+='|'
+                        else:
+                            linea+='.'
             matriz.append(linea)
-        for j in range(0,(2*array[i][0])+1):
-            for k in range(0,(2*array[i][1])+1):
-                print(matriz[j][k],end=" ")
+        for k in range(0,(2*array[i][0])+1):
+            print(matriz[k],end=" ")
             print()
-
-T=int(input("Test Cases: "))
+                    
+T=int(input())
 array=[T]
 for i in range(0,T):
-    aux = list(map(int,input("Enter the numbers : ").strip().split()))[:2]
-    array.append(aux)
+    x = input().split(' ')
+    x = list(map(int,x))
+    array.append(x)
 punched_ASCII(array)
